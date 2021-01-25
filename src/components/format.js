@@ -1,27 +1,31 @@
 import "./style.css";
 import React from "react";
+
+const ff = (event) => {
+  if (event.target.id == "myModal") {
+    return;
+  }
+  if (
+    event.target.id !== "myModal" &&
+    event.target.className !== "modal-content" &&
+    event.target.className !== "maaa"
+  ) {
+    
+
+    
+      document.querySelector("#myModal").style.display = "none";
+
+    
+  }
+}
 export const Fetchinglist = (props) => {
   const porpsobject = props;
   fetch = props.MovieData.filter((x) => {
     return x.name == props.match.params.id;
   });
-
-  document.body.addEventListener(
-    "click",
-    function (event) {
-      if (event.target.id == "myModal") {
-        return;
-      }
-      if (
-        event.target.id !== "myModal" &&
-        event.target.className !== "modal-content" &&
-        event.target.className !== "maaa"
-      ) {
-        document.querySelector("#myModal").style.display = "none";
-      }
-    },
-    true
-  );
+  
+  
+  document.body.addEventListener("click",ff,true);
 
   const WordsOtherThanenglish = fetch[0].language.replace(/(English)/gi, "");
   const fetchenglish = /(English)/gi.exec(fetch[0].language);
@@ -174,9 +178,11 @@ const convertor = (format, porpsobject,NameOfMovie) => {
     return (
       <button
         onClick={(event) => {
+          
           var combine = event.target.parentNode.firstChild.innerHTML.concat('',event.target.innerHTML)
           porpsobject.history.push(`/bookingMovie/${NameOfMovie}-${combine}`)
          
+          document.body.removeEventListener("click",ff,true);
 
         }}
         className="maaa"

@@ -67,8 +67,11 @@ componentDidUpdate(prop,state){
       return $(x).hasClass('to')
     })
     
-if(counting.length == Number(this.props.seat)){
+if(counting.length == Number(this.props.seat) || counting.length < Number(this.props.seat) ){
+ if(counting.length < Number(this.props.seat)){
+  document.querySelector('.payment').style.display='none'
 
+ }
 }else{
 document.querySelector('.payment').style.display='none'
   var aaaa= [...$(".parap")].forEach((x) => {
