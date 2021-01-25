@@ -1,0 +1,1 @@
+export const  filter = [{languages:'English Hindi Kannada Tamil Telugu'},{Genres:'Action Adventure Comedy'},{format:'3D 2D 4D'}]
