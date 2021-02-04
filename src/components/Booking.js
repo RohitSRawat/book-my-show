@@ -2,33 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
-import { countseats } from "../actions";
-
-const Header = (p) => {
-  const converted = {
-    fontSize: "24px",
-    position: "relative",
-    right: "white",
-    color: "white",
-    left: "96%",
-    top: "-67px",
-    cursor:'pointer'
-  };
-  var props = p.value;
-  return (
-    <div style={{ backgroundColor: "black", height: "83px" }}>
-      <p className="textcolor">{props.time[1]}</p>
-      <p className="textcolor">{props.time[0]}</p>
-      <p className="textcolor tooo" style={{cursor:'pointer'}} onClick={() => {   
-        var $ = window.jQuery
-        $('.ModalPop').show()
-        }}>
-        {props.seat + " Tickets"} <i className="arrow down"></i>
-      </p>
-      <i  onClick={() => {  props.history.goBack()}} style={converted} className="fa fa-close"></i>
-    </div>
-  );
-};
+import { countseats,ticketinfo } from "../actions";
+import Header from './head'
 
 class Booking extends React.Component {
   imagearray = () => {
@@ -274,7 +249,16 @@ update = (event) => {
             </g>
           </svg>
           <div style={{display:'none'}}className='payment'>
-          <h1 className='pay'>Proceed To Payment</h1>
+          <h1 className='pay'  onClick={() => {
+            console.log(this.props)
+            var $=window.jQuery
+            var truefalse = [...document.querySelectorAll('.parap')].filter((x) => {
+              return $(x).hasClass('to')
+            })
+this.props.ticketinfo(truefalse)
+
+            this.props.history.push('/jjj')
+          }}>Proceed To Payment</h1>
 
           </div>
         </React.Fragment>
@@ -333,4 +317,4 @@ var props = this.props
 const GetstatetoMap = (state) => {
   return { time: state.track, seat: state.seats };
 };
-export default connect(GetstatetoMap, { countseats })(Booking);
+export default connect(GetstatetoMap, { countseats , ticketinfo})(Booking);

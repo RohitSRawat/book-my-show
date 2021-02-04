@@ -7,6 +7,13 @@ return {type:'fetch',payload:data}
 
 
 }
+export const ticketinfo = (value) => {
+    return {type:'ticket',payload:value}
+
+}
+
+
+
 export const countseats = (value) => {
 
     return {type:'seats',payload:value}

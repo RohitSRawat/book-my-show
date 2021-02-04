@@ -77,9 +77,19 @@ const seats = (state = 1,action) => {
        return state ;
   }
 }
+const ticket = (state = [],action) => {
+  switch(action.type){
+
+    case 'ticket':
+      return action.payload
+      default:
+       return state ;
+  }
+}
 
 export default combineReducers({
   bookmyshow: book,
   track:timeing,
-  seats
+  seats,
+  ticket
 });
